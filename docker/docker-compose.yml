@@ -1,0 +1,74 @@
+# ==============================================================================
+# docker-compose.yml — Static 4-Node MPI Mini-Cluster
+#
+# All nodes are pre-configured. No dynamic discovery or SSH automation.
+# Node0 is the master that launches mpirun.
+# ==============================================================================
+
+version: "3.8"
+
+services:
+  node0:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mpi_node0
+    hostname: node0
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.10
+    volumes:
+      - ../results:/app/results
+    depends_on:
+      - node1
+      - node2
+      - node3
+    # Master node: start SSH, wait for workers, then run MPI
+    entrypoint: >
+      bash -c "
+        /usr/sbin/sshd &&
+        sleep 3 &&
+        echo '=== Running MPI across 4 static nodes ===' &&
+        mpirun --allow-run-as-root \
+               --hostfile /app/hostfile \
+               -np 4 \
+               /app/build/matmul_mpi 512 &&
+        echo '=== MPI run complete ==='
+      "
+
+  node1:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mpi_node1
+    hostname: node1
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.11
+
+  node2:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mpi_node2
+    hostname: node2
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.12
+
+  node3:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: mpi_node3
+    hostname: node3
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.13
+
+networks:
+  mpi_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
