@@ -193,7 +193,9 @@ int main(int argc, char** argv) {
 
     /* Execute selected mode */
     double exec_time = -1.0;
+#ifdef ENABLE_CUDA
     double kernel_time = 0.0;
+#endif
     int verified = 0;
 
     switch (mode) {

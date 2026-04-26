@@ -1,0 +1,134 @@
+honeypot@honeypot:~$ python3 -c "import matplotlib; print('OK')"
+OK
+honeypot@honeypot:~$ cd "/mnt/x/file/Projects/CUDA-MPI MatMul Engine"
+-bash: cd: /mnt/x/file/Projects/CUDA-MPI MatMul Engine: No such file or directory
+honeypot@honeypot:~$ dir
+honeypot@honeypot:~$ ls
+honeypot@honeypot:~$ pwd
+/home/honeypot
+honeypot@honeypot:~$ ls -a
+.   .aws    .bash_history  .bashrc  .config  .motd_shown  .sudo_as_admin_successful
+..  .azure  .bash_logout   .cache   .docker  .profile
+honeypot@honeypot:~$ ls /mnt/x
+honeypot@honeypot:~$ la -a
+.   .aws    .bash_history  .bashrc  .config  .motd_shown  .sudo_as_admin_successful
+..  .azure  .bash_logout   .cache   .docker  .profile
+honeypot@honeypot:~$ cat /etc/wsl.conf
+[boot]
+systemd=true
+
+[user]
+default=honeypot
+[automount]
+root = /mnt/host
+options = "metadata,umask=22,fmask=11"
+
+[interop]
+enabled = true
+honeypot@honeypot:~$ cd "/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine"
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ls src/
+core  cpu  cuda  main.c  mpi  openmp
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ make cpu
+gcc -O2 -Wall -Wextra -std=c99 -fopenmp \
+        -DENABLE_OPENMP_CPU \
+        src/main.c src/core/matrix.c src/core/timer.c src/cpu/sequential.c src/openmp/offload_cpu.c \
+        -o build/matmul_cpu -lm
+src/main.c: In function ‘main’:
+src/main.c:196:12: warning: unused variable ‘kernel_time’ [-Wunused-variable]
+  196 |     double kernel_time = 0.0;
+      |            ^~~~~~~~~~~
+[BUILD] build/matmul_cpu — CPU sequential + OpenMP CPU
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ make cpu
+gcc -O2 -Wall -Wextra -std=c99 -fopenmp \
+        -DENABLE_OPENMP_CPU \
+        src/main.c src/core/matrix.c src/core/timer.c src/cpu/sequential.c src/openmp/offload_cpu.c \
+        -o build/matmul_cpu -lm
+[BUILD] build/matmul_cpu — CPU sequential + OpenMP CPU
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ./build/matmul_cpu --mode cpu --size small
+
+[MODE] CPU Sequential
+[MATRIX] 256×256 (seed=42)
+[INFO] Computing CPU reference for verification...
+[CPU REF] 23.276 ms
+╔══════════════════════════════════════════╗
+║  CPU Sequential                          ║
+╠══════════════════════════════════════════╣
+║  Matrix Size :  256 ×  256               ║
+║  Time        :     23.276 ms              ║
+║  GFLOPS      :     1.4416                 ║
+║  Speedup     :       1.00x                ║
+║  Verified    : PASS ✓                       ║
+╚══════════════════════════════════════════╝
+
+CSV,CPU Sequential,256,23.276,1.4416,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ./build/matmul_cpu --mode cpu --size medium
+
+[MODE] CPU Sequential
+[MATRIX] 512×512 (seed=42)
+[INFO] Computing CPU reference for verification...
+[CPU REF] 251.530 ms
+╔══════════════════════════════════════════╗
+║  CPU Sequential                          ║
+╠══════════════════════════════════════════╣
+║  Matrix Size :  512 ×  512               ║
+║  Time        :    251.530 ms              ║
+║  GFLOPS      :     1.0672                 ║
+║  Speedup     :       1.00x                ║
+║  Verified    : PASS ✓                       ║
+╚══════════════════════════════════════════╝
+
+CSV,CPU Sequential,512,251.530,1.0672,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ./build/matmul_cpu --mode cpu --size large
+
+[MODE] CPU Sequential
+[MATRIX] 1024×1024 (seed=42)
+[INFO] Computing CPU reference for verification...
+[CPU REF] 5045.560 ms
+╔══════════════════════════════════════════╗
+║  CPU Sequential                          ║
+╠══════════════════════════════════════════╣
+║  Matrix Size : 1024 × 1024               ║
+║  Time        :   5045.560 ms              ║
+║  GFLOPS      :     0.4256                 ║
+║  Speedup     :       1.00x                ║
+║  Verified    : PASS ✓                       ║
+╚══════════════════════════════════════════╝
+
+CSV,CPU Sequential,1024,5045.560,0.4256,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ./build/matmul_cpu --mode cpu --size 300
+
+[MODE] CPU Sequential
+[MATRIX] 300×300 (seed=42)
+[INFO] Computing CPU reference for verification...
+[CPU REF] 36.087 ms
+╔══════════════════════════════════════════╗
+║  CPU Sequential                          ║
+╠══════════════════════════════════════════╣
+║  Matrix Size :  300 ×  300               ║
+║  Time        :     36.087 ms              ║
+║  GFLOPS      :     1.4964                 ║
+║  Speedup     :       1.00x                ║
+║  Verified    : PASS ✓                       ║
+╚══════════════════════════════════════════╝
+
+CSV,CPU Sequential,300,36.087,1.4964,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ export OMP_NUM_THREADS=4
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ ./build/matmul_cpu --mode openmp-cpu --size medium
+
+[MODE] OpenMP CPU Parallel
+[MATRIX] 512×512 (seed=42)
+[INFO] Computing CPU reference for verification...
+[CPU REF] 253.374 ms
+[OpenMP CPU] Using 4 threads (CPU only, no GPU offload)
+╔══════════════════════════════════════════╗
+║  OpenMP CPU Parallel                     ║
+╠══════════════════════════════════════════╣
+║  Matrix Size :  512 ×  512               ║
+║  Time        :    113.453 ms              ║
+║  GFLOPS      :     2.3660                 ║
+║  Speedup     :       2.23x                ║
+║  Verified    : PASS ✓                       ║
+╚══════════════════════════════════════════╝
+
+CSV,OpenMP CPU Parallel,512,113.453,2.3660,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$
