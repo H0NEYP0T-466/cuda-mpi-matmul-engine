@@ -145,6 +145,9 @@ def chart_speedup(data, sizes):
     ax.set_xlabel('Matrix Size (N×N)')
     ax.set_ylabel('Speedup (×)')
     ax.set_title('Speedup vs CPU Sequential Baseline')
+    ax.set_xscale('log', base=2)
+    ax.set_xticks(sizes)
+    ax.set_xticklabels([str(s) for s in sizes])
     ax.legend()
     ax.grid(alpha=0.3)
     plt.tight_layout()
@@ -205,6 +208,7 @@ def chart_mpi_strong_scaling(data, sizes):
     ax.set_xlabel('Number of MPI Processes')
     ax.set_ylabel('Speedup (×)')
     ax.set_title('MPI Strong Scaling')
+    ax.set_xticks(processes)
     ax.legend()
     ax.grid(alpha=0.3)
     plt.tight_layout()
@@ -231,6 +235,9 @@ def chart_mpi_weak_scaling(data, sizes):
     ax.set_title('MPI Execution Time vs Problem Size')
     ax.legend()
     ax.set_yscale('log')
+    ax.set_xscale('log', base=2)
+    ax.set_xticks(sizes)
+    ax.set_xticklabels([str(s) for s in sizes])
     ax.grid(alpha=0.3)
     plt.tight_layout()
     plt.savefig(os.path.join(CHART_DIR, '5_mpi_weak_scaling.png'), bbox_inches='tight')
@@ -280,10 +287,11 @@ def main():
     print("")
 
     data = load_csv(CSV_FILE)
+    expected_sizes = {256, 512, 1024, 2048}
     sizes = sorted(set(
         s for mode_data in data.values()
         for s in mode_data.keys()
-        if s >= 256  # Only benchmark sizes, not edge cases
+        if s in expected_sizes
     ))
 
     if not sizes:
