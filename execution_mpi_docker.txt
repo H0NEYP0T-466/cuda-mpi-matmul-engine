@@ -324,3 +324,25 @@ mpi_node0  | CSV,mpi-4,512,261.681,1.0258,PASS
 mpi_node0  | === MPI run complete ===
 mpi_node0 exited with code 0
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$
+Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
+mpi_node0  | === Running MPI across 4 static nodes ===
+mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
+mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
+mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
+mpi_node0  | [MPI] Matrix size: 1024×1024
+mpi_node0  | [MPI] Number of processes: 4
+mpi_node0  | ╔══════════════════════════════════════════╗
+mpi_node0  | ║  MPI Distributed (4 processes)           ║
+mpi_node0  | ╠══════════════════════════════════════════╣
+mpi_node0  | ║  Matrix Size   : 1024 × 1024             ║
+mpi_node0  | ║  Total Time    :   6194.132 ms            ║
+mpi_node0  | ║  Compute Time  :   6107.225 ms            ║
+mpi_node0  | ║  Comm Time     :     86.825 ms            ║
+mpi_node0  | ║  GFLOPS        :     0.3467               ║
+mpi_node0  | ║  Speedup vs CPU:       1.84x              ║
+mpi_node0  | ║  Efficiency    :      46.01%              ║
+mpi_node0  | ║  Verified      : PASS ✓                     ║
+mpi_node0  | ╚══════════════════════════════════════════╝
+mpi_node0  | CSV,mpi-4,1024,6194.132,0.3467,PASS
+mpi_node0  | === MPI run complete ===
+mpi_node0 exited with code 0
