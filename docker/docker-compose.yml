@@ -29,10 +29,7 @@ services:
         /usr/sbin/sshd &&
         sleep 3 &&
         echo '=== Running MPI across 4 static nodes ===' &&
-        mpirun --allow-run-as-root \
-               --hostfile /app/hostfile \
-               -np 4 \
-               /app/build/matmul_mpi 512 &&
+        mpirun --allow-run-as-root --hostfile /app/hostfile -np 4 /app/build/matmul_mpi 512 &&
         echo '=== MPI run complete ==='
       "
 
