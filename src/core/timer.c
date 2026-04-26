@@ -1,6 +1,7 @@
 /*
  * timer.c — High-resolution timing implementation
  */
+#define _POSIX_C_SOURCE 199309L
 
 #include "timer.h"
 #include <stdio.h>
