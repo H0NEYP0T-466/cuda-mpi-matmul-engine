@@ -1,5 +1,4 @@
-honeypot@honeypot:~$ cd "/mnt/x/file/Projects/CUDA-MPI MatMul Engine"
--bash: cd: /mnt/x/file/Projects/CUDA-MPI MatMul Engine: No such file or directory
+
 honeypot@honeypot:~$ dir
 honeypot@honeypot:~$ ls
 honeypot@honeypot:~$ pwd
