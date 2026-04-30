@@ -14,10 +14,14 @@
 
 set -e
 
+# Load OpenMPI for Amazon Linux
+source /etc/profile.d/modules.sh 2>/dev/null || true
+module load mpi/openmpi-x86_64 2>/dev/null || true
+
 RESULTS_DIR="results"
 CSV_FILE="$RESULTS_DIR/scaling.csv"
-HOSTFILE="cloud_hostfile"
-BINARY="/home/ubuntu/matmul_mpi"
+HOSTFILE="aws/cloud_hostfile"
+BINARY="/home/ec2-user/matmul_mpi"
 
 # Matrix sizes to test
 SIZES=(512 1024 2048)
@@ -25,8 +29,8 @@ SIZES=(512 1024 2048)
 # Process counts to test
 PROCS=(1 2 4)
 
-# Cost per hour per c5.large instance
-COST_PER_HOUR=0.085
+
+COST_PER_HOUR=0.0104
 
 mkdir -p "$RESULTS_DIR"
 
@@ -34,7 +38,7 @@ echo "mode,matrix_size,num_procs,exec_time_ms,gflops,speedup,efficiency,est_cost
 
 echo "╔══════════════════════════════════════════╗"
 echo "║   AWS EC2 Cloud Scaling Experiment        ║"
-echo "║   Instance type: c5.large ($COST_PER_HOUR/hr) ║"
+echo "║   Instance type: t3.micro ($COST_PER_HOUR/hr) ║"
 echo "╚══════════════════════════════════════════╝"
 echo ""
 
@@ -47,6 +51,8 @@ for size in "${SIZES[@]}"; do
 
         # Run MPI across cloud instances
         output=$(mpirun --hostfile "$HOSTFILE" \
+                        --prefix /usr/lib64/openmpi \
+                        -mca plm_rsh_args "-o StrictHostKeyChecking=no" \
                         --allow-run-as-root \
                         -np "$np" \
                         "$BINARY" "$size" 2>&1) || true
