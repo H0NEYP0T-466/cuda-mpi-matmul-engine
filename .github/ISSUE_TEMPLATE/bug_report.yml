@@ -1,0 +1,112 @@
+name: "Bug report"
+description: "Report a reproducible problem"
+labels: ["bug"]
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report a bug! Please fill out the details below.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: A clear, one-line summary of the bug
+      placeholder: "e.g., CUDA tiled kernel produces incorrect results for N=257"
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Exact steps to reproduce the issue
+      placeholder: |
+        1. Build with: `make cuda`
+        2. Run: `./build/matmul_cuda --mode cuda-tiled --size 257`
+        3. Observe: Verification FAIL in CSV output
+      value: |
+        1.
+        2.
+        3.
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What should happen?
+      placeholder: "e.g., Result should be verified PASS against CPU reference"
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happens? Include error messages and output.
+      placeholder: "e.g., Verification FAIL — first mismatch at C[0][0]: expected 1.234, got 5.678"
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Your system configuration
+      placeholder: |
+        - OS: Ubuntu 22.04 / Windows 11 (WSL2) / macOS 14
+        - GCC version: gcc --version
+        - CUDA version: nvcc --version (if applicable)
+        - MPI version: mpirun --version (if applicable)
+        - GPU: NVIDIA T4 / RTX 3090 / None
+      value: |
+        - OS:
+        - GCC version:
+        - CUDA version:
+        - MPI version:
+        - GPU:
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs & Output
+      description: Paste terminal output, CSV lines, or relevant log excerpts
+      render: shell
+      placeholder: |
+        $ ./build/matmul_cuda --mode cuda-tiled --size 257
+        [MODE] CUDA Tiled (Shared Memory)
+        [MATRIX] 257×257 (seed=42)
+        ...
+        CSV,CUDA Tiled (Shared Memory),257,123.456,1.2345,FAIL
+
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots
+      description: If applicable, add screenshots to help explain the problem
+      placeholder: "Drag and drop images here"
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this bug?
+      options:
+        - "critical — crashes, data corruption, or complete failure"
+        - "high — major feature broken, incorrect results"
+        - "medium — feature partially broken, workaround exists"
+        - "low — cosmetic, minor inconvenience"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other information that might help
+      placeholder: "e.g., Only happens with non-power-of-2 sizes. Works fine for N=256, 512, 1024."

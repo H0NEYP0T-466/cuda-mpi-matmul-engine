@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 Discussions
+    url: https://github.com/H0NEYP0T-466/cuda-mpi-matmul-engine/discussions
+    about: Ask questions, share ideas, or get help
+  - name: 🛡 Security Vulnerability
+    url: https://github.com/H0NEYP0T-466/cuda-mpi-matmul-engine/security/advisories/new
+    about: Report security vulnerabilities privately
+  - name: 📖 Documentation
+    url: https://github.com/H0NEYP0T-466/cuda-mpi-matmul-engine/blob/main/README.md
+    about: Check the documentation before opening an issue

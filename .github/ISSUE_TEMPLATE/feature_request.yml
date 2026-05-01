@@ -1,0 +1,70 @@
+name: "Feature request"
+description: "Propose an enhancement"
+labels: ["enhancement"]
+title: "[Feature]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting an improvement! Please describe the feature you'd like to see.
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem are you trying to solve? What limitation exists today?
+      placeholder: "e.g., The current MPI implementation only supports row-wise decomposition. For very tall-skinny matrices, column-wise decomposition would be more efficient."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed feature or enhancement
+      placeholder: "e.g., Add a `--decomposition row|col|block` flag to the MPI distributed mode that selects the data distribution strategy."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches have you thought about?
+      placeholder: "e.g., Could use 2D decomposition (Cannon's algorithm), but that adds communication complexity that may not be worth it for our matrix sizes."
+    validations:
+      required: false
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope
+      description: What's in scope and out of scope for this feature?
+      placeholder: |
+        **In scope:**
+        - Column-wise MPI decomposition
+        - Benchmark comparison vs row-wise
+
+        **Out of scope:**
+        - 2D block decomposition
+        - Hybrid MPI+CUDA
+    validations:
+      required: false
+
+  - type: textarea
+    id: risks
+    attributes:
+      label: Risks & Considerations
+      description: What could go wrong? What are the trade-offs?
+      placeholder: "e.g., Column-wise decomposition requires broadcasting A instead of B, which may have different network characteristics. Also requires transposing the output."
+    validations:
+      required: false
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Any other information — references, papers, mockups
+      placeholder: "e.g., Reference: https://example.com/papers/mpi-matmul-decomposition.pdf"
+    validations:
+      required: false
