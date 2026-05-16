@@ -1,310 +1,101 @@
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ docker --version
-
-The command 'docker' could not be found in this WSL 2 distro.
-We recommend to activate the WSL integration in Docker Desktop settings.
-
-For details about using Docker Desktop with WSL 2, visit:
-
-https://docs.docker.com/go/wsl2/
-
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ docker --version
-Docker version 29.4.0, build 9d7ad9f
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ docker-compose --version
-Docker Compose version v5.1.2
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ docker-compose up --build
+no configuration file provided: not found
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ cd docker
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$ docker-compose up --build
 WARN[0000] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
-[+] Building 126.5s (7/15)
+[+] Building 392.7s (22/22) FINISHED
  => [internal] load local bake definitions                                                                                        0.0s
  => => reading from stdin 1.94kB                                                                                                  0.0s
  => [node0 internal] load build definition from Dockerfile                                                                        0.1s
- => => transferring dockerfile: 1.67kB                                                                                            0.1s
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             3.5s
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0s
- => [node0 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 internal] load build context                                                                                           0.3s
- => => transferring context: 47.79kB                                                                                              0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7      30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.[+] Building 126.6s (7/15)                                                                                                             e43eb48ec 29.74MB / 29.74MB                                 27.
- => [internal] load local bake definitions                                                                                        0.0s57907f8f3e88e43eb48ec                                         2.
- => => reading from stdin 1.94kB                                                                                                  0.0sssential     gcc     g++     make     openmpi-bin     libop  87.
- => [node0 internal] load build definition from Dockerfile                                                                        0.1stomake all 1:1.16.5-1.3 [558 kB]
- => => transferring dockerfile: 1.67kB                                                                                            0.1s> => # Get:86 http://archive.ubuntu.com/ubuntu jammy-updates/mai
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             3.5samd64 libctf-nobfd0 amd64 2.38-4ubuntu2.12 [108 kB]
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0s> => # Get:89 http://archive.ubuntu.com/ubuntu jammy-updates/mai
- => [node0 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 internal] load build context                                                                                           0.3s
- => => transferring context: 47.79kB                                                                                              0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7      30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.2s
- => => sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec 29.74MB / 29.74MB                                 27.7s
- => => extracting sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec                                         2.[+] Building 126.8s (7/15)                                                                                                             sential     gcc     g++     make     openmpi-bin     libop  87.
- => [internal] load local bake definitions                                                                                        0.0stomake all 1:1.16.5-1.3 [558 kB]
- => => reading from stdin 1.94kB                                                                                                  0.0samd64 binutils-common amd64 2.38-4ubuntu2.12 [223 kB]
- => [node0 internal] load build definition from Dockerfile                                                                        0.1samd64 libbinutils amd64 2.38-4ubuntu2.12 [663 kB]
- => => transferring dockerfile: 1.67kB                                                                                            0.1samd64 libctf-nobfd0 amd64 2.38-4ubuntu2.12 [108 kB]
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             3.5samd64 libctf0 amd64 2.38-4ubuntu2.12 [103 kB]
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0samd64 binutils-x86-64-linux-gnu amd64 2.38-4ubuntu2.12 [2324 kB]
- => [node0 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 internal] load build context                                                                                           0.3s
- => => transferring context: 47.79kB                                                                                              0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7      30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.2s
- => => sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec 29.74MB / 29.74MB                                 27.7s
- => => extracting sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec                                         2.[+] Building 126.9s (7/15)                                                                                                             sential     gcc     g++     make     openmpi-bin     libop  88.
- => [internal] load local bake definitions                                                                                        0.0stomake all 1:1.16.5-1.3 [558 kB]
- => => reading from stdin 1.94kB                                                                                                  0.0samd64 binutils-common amd64 2.38-4ubuntu2.12 [223 kB]
- => [node0 internal] load build definition from Dockerfile                                                                        0.1samd64 libbinutils amd64 2.38-4ubuntu2.12 [663 kB]
- => => transferring dockerfile: 1.67kB                                                                                            0.1samd64 libctf-nobfd0 amd64 2.38-4ubuntu2.12 [108 kB]
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             3.5samd64 libctf0 amd64 2.38-4ubuntu2.12 [103 kB]
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0samd64 binutils-x86-64-linux-gnu amd64 2.38-4ubuntu2.12 [2324 kB]
- => [node0 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 internal] load build context                                                                                           0.3s
- => => transferring context: 47.79kB                                                                                              0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7      30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.2s
- => => sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec 29.74MB / 29.74MB                                 27.7s
- => => extracting sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec                                         2.[+] Building 127.1s (7/15)                                                                                                             sential     gcc     g++     make     openmpi-bin     libop  88.
- => [internal] load local bake definitions                                                                                        0.0stomake all 1:1.16.5-1.3 [558 kB]
- => => reading from stdin 1.94kB                                                                                                  0.0samd64 binutils-common amd64 2.38-4ubuntu2.12 [223 kB]
- => [node0 internal] load build definition from Dockerfile                                                                        0.1samd64 libbinutils amd64 2.38-4ubuntu2.12 [663 kB]
- => => transferring dockerfile: 1.67kB                                                                                            0.1samd64 libctf-nobfd0 amd64 2.38-4ubuntu2.12 [108 kB]
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             3.5samd64 libctf0 amd64 2.38-4ubuntu2.12 [103 kB]
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0samd64 binutils-x86-64-linux-gnu amd64 2.38-4ubuntu2.12 [2324 kB]
- => [node0 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 internal] load build context                                                                                           0.3s
- => => transferring context: 47.79kB                                                                                              0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7      30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.2s
- => => sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec 29.74MB / 29.74MB                                 27.7s
- => => extracting sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec                               [+] Building 419.3s (23/23) FINISHED
- => [internal] load local bake definitions                                                                         0.0s
- => => reading from stdin 1.94kB                                                                                   0.0s
- => [node0 internal] load build definition from Dockerfile                                                         0.1s
- => => transferring dockerfile: 1.67kB                                                                             0.1s
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                              3.5s
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                      0.0s
- => [node0 internal] load .dockerignore                                                                            0.1s
- => => transferring context: 2B                                                                                    0.0s
- => [node3 internal] load build context                                                                            0.3s
- => => transferring context: 47.79kB                                                                               0.3s
- => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83  30.5s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b6  0.2s
- => => sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec 29.74MB / 29.74MB                  27.7s
- => => extracting sha256:f63eb04151bcac21ad049f8d781b97b219aba392c5457907f8f3e88e43eb48ec                          2.5s
- => [node1 2/9] RUN apt-get update && apt-get install -y     build-essential     gcc     g++     make     openm  266.1s
- => [node3 3/9] RUN mkdir -p /var/run/sshd &&     echo 'root:root' | chpasswd &&     sed -i 's/#PermitRootLogin p  0.7s
- => [node2 4/9] RUN ssh-keygen -t rsa -f /root/.ssh/id_rsa -N "" &&     cp /root/.ssh/id_rsa.pub /root/.ssh/autho  1.2s
- => [node3 5/9] WORKDIR /app                                                                                       0.1s
- => [node2 6/9] COPY src/ /app/src/                                                                                0.1s
- => [node1 7/9] COPY Makefile /app/Makefile                                                                        0.1s
- => [node2 8/9] COPY docker/hostfile /app/hostfile                                                                 0.1s
- => [node2 9/9] RUN make cpu && make mpi                                                                           1.5s
- => [node3] exporting to image                                                                                   109.1s
- => => exporting layers                                                                                           51.1s
- => => exporting manifest sha256:31fb4b9b78c5bc7a4529a9711bd05a753192220200c0c04ae9ca59304317d7c6                  0.1s
- => => exporting config sha256:8206e3cf431852f22f60a803d78f218b7de8f783bd6575bab0745d551b108a00                    0.1s
- => => exporting attestation manifest sha256:9f83422bda8ad5bab31f7e7cf28b5edae113dbedb5b564f4e17c77dbc3015f6b      0.3s
- => => exporting manifest list sha256:8fc23673dac761104cc25f7f0fae5ca37a9ed949dd49e8ac65261c2ea2a34cc6             0.1s
- => => naming to docker.io/library/docker-node3:latest                                                             0.0s
- => => unpacking to docker.io/library/docker-node3:latest                                                         57.0s
- => [node1] exporting to image                                                                                   109.2s
- => => exporting layers                                                                                           51.1s
- => => exporting manifest sha256:a21c47801a1421ccd7cd6cd3d91b80302e7634a73471298781d1ff5d68682494                  0.1s
- => => exporting config sha256:ad13f6fb719ac08a8d5ff887555fecf925fef6bd3bbb534fb9f4df21da33b152                    0.1s
- => => exporting attestation manifest sha256:d65f534c0ae7236686390d0352c36a5e59f86d1a754d6d072ced7670fbf2300b      0.3s
- => => exporting manifest list sha256:4485bfb65da2fb0a2acfe188367fa223c3b4edc8409e1e3b10d5efa119322598             0.1s
- => => naming to docker.io/library/docker-node1:latest                                                             0.0s
- => => unpacking to docker.io/library/docker-node1:latest                                                         57.1s
- => [node0] exporting to image                                                                                   109.1s
- => => exporting layers                                                                                           51.1s
- => => exporting manifest sha256:c48544cab692ea9b9fbff150a7e4648ae68dd0e523c70acdd017bf6e367b9635                  0.1s
- => => exporting config sha256:e6902c9ab42f89f7d1798b72e833fc4f8e5f1b236b89817e05223de5c9a527a7                    0.1s
- => => exporting attestation manifest sha256:88c96b0f15027c2c19849525e4cc9c83689e66bd3ca25fb4f846401fbf7fc847      0.3s
- => => exporting manifest list sha256:1f39d40f0d69c0132c5e5fc11b596cc0d0c45fc8912e463e9f4ba138103be78c             0.1s
- => => naming to docker.io/library/docker-node0:latest                                                             0.0s
- => => unpacking to docker.io/library/docker-node0:latest                                                         57.1s
- => [node2] exporting to image                                                                                   109.1s
- => => exporting layers                                                                                           51.1s
- => => exporting manifest sha256:eb9b8a671b6a7bf516a9d094915314c9592dfdcafaa864fb06ee3586ab05e145                  0.1s
- => => exporting config sha256:d011abb1b9809aaa53c5b41504cf9f559dcb2b2b2329ee1add5b1a1c72dafa00                    0.1s
- => => exporting attestation manifest sha256:2a2c8a794e0762926fd54e3a138ee7c057be9c2c5d28161f5cc32b3bea99b6be      0.3s
- => => exporting manifest list sha256:1e5d5788363aeeb98621b05534b70dea879549b2b4691f074af98cbe025007e9             0.1s
- => => naming to docker.io/library/docker-node2:latest                                                             0.1s
- => => unpacking to docker.io/library/docker-node2:latest                                                         57.1s
- => [node3] resolving provenance for metadata file                                                                 0.4s
- => [node0] resolving provenance for metadata file                                                                 0.3s
- => [node1] resolving provenance for metadata file                                                                 0.2s
- => [node2] resolving provenance for metadata file                                                                 0.0s
-[+] up 9/9
- ✔ Image docker-node0     Built                                                                                   384.1s
- ✔ Image docker-node1     Built                                                                                   384.1s
- ✔ Image docker-node2     Built                                                                                   384.1s
- ✔ Image docker-node3     Built                                                                                   384.1s
- ✔ Network docker_mpi_net Created                                                                                   0.2s
- ✔ Container mpi_node3    Created                                                                                   4.2s
- ✔ Container mpi_node1    Created                                                                                   4.1s
- ✔ Container mpi_node2    Created                                                                                   4.1s
- ✔ Container mpi_node0    Created                                                                                   0.6s
-Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
-mpi_node0  | === Running MPI across 4 static nodes ===
-mpi_node0  | --------------------------------------------------------------------------
-mpi_node0  | No executable was specified on the mpirun command line.
-mpi_node0  |
-mpi_node0  | Aborting.
-mpi_node0  | --------------------------------------------------------------------------
-mpi_node0  | bash: line 6: --hostfile: command not found
-mpi_node0  | bash: line 7: -np: command not found
-mpi_node0  | [MPI] Matrix size: 512×512
-mpi_node0  | [MPI] Number of processes: 1
-mpi_node0  | ╔══════════════════════════════════════════╗
-mpi_node0  | ║  MPI Distributed (1 processes)           ║
-mpi_node0  | ╠══════════════════════════════════════════╣
-mpi_node0  | ║  Matrix Size   :  512 ×  512             ║
-mpi_node0  | ║  Total Time    :    390.417 ms            ║
-mpi_node0  | ║  Compute Time  :    387.865 ms            ║
-mpi_node0  | ║  Comm Time     :      2.550 ms            ║
-mpi_node0  | ║  GFLOPS        :     0.6876               ║
-mpi_node0  | ║  Speedup vs CPU:       0.88x              ║
-mpi_node0  | ║  Efficiency    :      88.27%              ║
-mpi_node0  | ║  Verified      : PASS ✓                     ║
-mpi_node0  | ╚══════════════════════════════════════════╝
-mpi_node0  | CSV,mpi-1,512,390.417,0.6876,PASS
-mpi_node0  | === MPI run complete ===
-mpi_node0 exited with code 0
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$ docker-compose up --build
-WARN[0000] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
-[+] Building 8.8s (23/23) FINISHED
- => [internal] load local bake definitions                                                                                        0.0s
- => => reading from stdin 1.94kB                                                                                                  0.0s
- => [node1 internal] load build definition from Dockerfile                                                                        0.1s
  => => transferring dockerfile: 1.67kB                                                                                            0.0s
- => [node1 internal] load metadata for docker.io/library/ubuntu:22.04                                                             1.7s
- => [auth] library/ubuntu:pull token for registry-1.docker.io                                                                     0.0s
- => [node1 internal] load .dockerignore                                                                                           0.1s
- => => transferring context: 2B                                                                                                   0.0s
- => [node3 1/9] FROM docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7       0.1s
- => => resolve docker.io/library/ubuntu:22.04@sha256:962f6cadeae0ea6284001009daa4cc9a8c37e75d1f5191cf0eb83fe565b63dd7             0.1s
- => [node0 internal] load build context                                                                                           0.2s
- => => transferring context: 756B                                                                                                 0.2s
- => CACHED [node2 2/9] RUN apt-get update && apt-get install -y     build-essential     gcc     g++     make     openmpi-bin      0.0s
- => CACHED [node2 3/9] RUN mkdir -p /var/run/sshd &&     echo 'root:root' | chpasswd &&     sed -i 's/#PermitRootLogin prohibit-  0.0s
- => CACHED [node2 4/9] RUN ssh-keygen -t rsa -f /root/.ssh/id_rsa -N "" &&     cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_ke  0.0s
- => CACHED [node2 5/9] WORKDIR /app                                                                                               0.0s
- => CACHED [node2 6/9] COPY src/ /app/src/                                                                                        0.0s
- => CACHED [node2 7/9] COPY Makefile /app/Makefile                                                                                0.0s
- => CACHED [node2 8/9] COPY docker/hostfile /app/hostfile                                                                         0.0s
- => CACHED [node0 9/9] RUN make cpu && make mpi                                                                                   0.0s
- => [node2] exporting to image                                                                                                    0.9s
- => => exporting layers                                                                                                           0.0s
- => => exporting manifest sha256:eb9b8a671b6a7bf516a9d094915314c9592dfdcafaa864fb06ee3586ab05e145                                 0.1s
- => => exporting config sha256:d011abb1b9809aaa53c5b41504cf9f559dcb2b2b2329ee1add5b1a1c72dafa00                                   0.0s
- => => exporting attestation manifest sha256:09286db224ba85c09399014129a88cdcb057eaf4b2124001f8d1941057d423bb                     0.2s
- => => exporting manifest list sha256:97860ccf2c26b62fdb5a680ea9f4b186e39f2406cf275520f2e5b8eec84abcc7                            0.3s
- => => naming to docker.io/library/docker-node2:latest                                                                            0.0s
- => => unpacking to docker.io/library/docker-node2:latest                                                                         0.1s
- => [node0] exporting to image                                                                                                    1.0s
- => => exporting layers                                                                                                           0.0s
- => => exporting manifest sha256:c48544cab692ea9b9fbff150a7e4648ae68dd0e523c70acdd017bf6e367b9635                                 0.0s
- => => exporting config sha256:e6902c9ab42f89f7d1798b72e833fc4f8e5f1b236b89817e05223de5c9a527a7                                   0.0s
- => => exporting attestation manifest sha256:3a641f9b6560b2a2ae5e47c00d2ea3d631f5b1318c2f823634eb48d3c1903e67                     0.4s
- => => exporting manifest list sha256:1ff541b2d3d68b1c82808c2b16c98e2c5a8e728f9eee550bfdb955e42a90e687                            0.1s
- => => naming to docker.io/library/docker-node0:latest                                                                            0.0s
- => => unpacking to docker.io/library/docker-node0:latest                                                                         0.1s
- => [node1] exporting to image                                                                                                    1.0s
- => => exporting layers                                                                                                           0.0s
- => => exporting manifest sha256:a21c47801a1421ccd7cd6cd3d91b80302e7634a73471298781d1ff5d68682494                                 0.0s
- => => exporting config sha256:ad13f6fb719ac08a8d5ff887555fecf925fef6bd3bbb534fb9f4df21da33b152                                   0.0s
- => => exporting attestation manifest sha256:87f56e08ba6fb5ebb03b1dc1edc3853aa5396968e30fca62c482cf2b01a492b1                     0.4s
- => => exporting manifest list sha256:62de5283998bdcabea833eb2dffdf1f020c1f1d7bd5bcc880d9a3d471154bd79                            0.1s
- => => naming to docker.io/library/docker-node1:latest                                                                            0.0s
- => => unpacking to docker.io/library/docker-node1:latest                                                                         0.1s
- => [node3] exporting to image                                                                                                    0.9s
- => => exporting layers                                                                                                           0.0s
- => => exporting manifest sha256:31fb4b9b78c5bc7a4529a9711bd05a753192220200c0c04ae9ca59304317d7c6                                 0.0s
- => => exporting config sha256:8206e3cf431852f22f60a803d78f218b7de8f783bd6575bab0745d551b108a00                                   0.0s
- => => exporting attestation manifest sha256:462b93233eec279938008ba68d25da6303e699e250c929b58f89f4e326074a1f                     0.3s
- => => exporting manifest list sha256:a3d58dfd34f6249d4e008b3d577bf9e90b0bedbb004c6aff0ee6fe5497d8c57d                            0.2s
- => => naming to docker.io/library/docker-node3:latest                                                                            0.0s
- => => unpacking to docker.io/library/docker-node3:latest                                                                         0.1s
- => [node2] resolving provenance for metadata file                                                                                0.3s
- => [node3] resolving provenance for metadata file                                                                                0.2s
+ => [node0 internal] load metadata for docker.io/library/ubuntu:22.04                                                             4.8s
+ => [node0 internal] load .dockerignore                                                                                           0.1s
+ => => transferring context: 2B                                                                                                   0.1s
+ => [node2 1/9] FROM docker.io/library/ubuntu:22.04@sha256:13861e4d4047fbbe1fc1737d690dffe8d31c4524c8f203beb0c9bb1ddda35d3c      31.4s
+ => => resolve docker.io/library/ubuntu:22.04@sha256:13861e4d4047fbbe1fc1737d690dffe8d31c4524c8f203beb0c9bb1ddda35d3c             0.0s
+ => => sha256:40d16f30db405106ef8074779bdf41f012465c2a785bbeaa2eab9f2081099b47 29.74MB / 29.74MB                                 29.5s
+ => => extracting sha256:40d16f30db405106ef8074779bdf41f012465c2a785bbeaa2eab9f2081099b47                                         1.7s
+ => [node0 internal] load build context                                                                                           0.3s
+ => => transferring context: 15.71kB                                                                                              0.2s
+ => [node0 2/9] RUN apt-get update && apt-get install -y     build-essential     gcc     g++     make     openmpi-bin     libo  258.2s
+ => [node1 3/9] RUN mkdir -p /var/run/sshd &&     echo 'root:root' | chpasswd &&     sed -i 's/#PermitRootLogin prohibit-passwor  0.9s
+ => [node1 4/9] RUN ssh-keygen -t rsa -f /root/.ssh/id_rsa -N "" &&     cp /root/.ssh/id_rsa.pub /root/.ssh/authorized_keys &&    0.8s
+ => [node2 5/9] WORKDIR /app                                                                                                      0.1s
+ => [node2 6/9] COPY src/ /app/src/                                                                                               0.1s
+ => [node1 7/9] COPY Makefile /app/Makefile                                                                                       0.1s
+ => [node0 8/9] COPY docker/hostfile /app/hostfile                                                                                0.2s
+ => [node3 9/9] RUN make cpu && make mpi                                                                                          1.8s
+ => [node0] exporting to image                                                                                                   88.5s
+ => => exporting layers                                                                                                          41.0s
+ => => exporting manifest sha256:1d87df545ed0174c604fbe3e70d84878356d901b3de26e7fbae96b4e5b7dcdf1                                 0.2s
+ => => exporting config sha256:66f446bd65bf938d333ad81ac15ab99fff6a7c79841548c9cf11d97ceced82bd                                   0.2s
+ => => exporting attestation manifest sha256:0c20f2f7d00c4c2ffb629bc4de8b491db559804ee579434004916a38f7a15ab7                     0.3s
+ => => exporting manifest list sha256:fa3c18a14701a80b0908e5223c281f9eeb290f73b472fc9a73c72542ed0230f0                            0.2s
+ => => naming to docker.io/library/docker-node0:latest                                                                            0.1s
+ => => unpacking to docker.io/library/docker-node0:latest                                                                        46.3s
+ => [node1] exporting to image                                                                                                   88.4s
+ => => exporting layers                                                                                                          41.0s
+ => => exporting manifest sha256:02c932878bc28e62e394881fc88d61b03a5f05b181f4454f504652f4a19711ff                                 0.2s
+ => => exporting config sha256:28a5787c60bf83c0d5ce9b877d9ed189b3483ca12cbea93dee7b89cce75c4023                                   0.2s
+ => => exporting attestation manifest sha256:74279442e98eb2fa96ccc86eb9ed659ea5d2f2cbf1b3d29108c279e05f11bb32                     0.3s
+ => => exporting manifest list sha256:83dddb0a88a8345ac43f7311517c4765e43db0fd02a987e411ec3d190df8fb5f                            0.1s
+ => => naming to docker.io/library/docker-node1:latest                                                                            0.1s
+ => => unpacking to docker.io/library/docker-node1:latest                                                                        46.3s
+ => [node2] exporting to image                                                                                                   88.4s
+ => => exporting layers                                                                                                          41.0s
+ => => exporting manifest sha256:e07afc8538786972cfd49ac6fa280614e07016c39a1d9fd9a5bd44b508caf0ce                                 0.2s
+ => => exporting config sha256:1904c04a9c4b40b6f3fce0dee682ee1fb3806e6823dfbf00f3b6c2391aeec126                                   0.2s
+ => => exporting attestation manifest sha256:3686eb2f122443ef74817c98f49f08fcc55eebac8fcd1d5edcfdd677c7a37a03                     0.3s
+ => => exporting manifest list sha256:29a2f33ccb73f733b079bdc161fb9ae3fc00965a9e0c7d240f7878e20fd52246                            0.2s
+ => => naming to docker.io/library/docker-node2:latest                                                                            0.1s
+ => => unpacking to docker.io/library/docker-node2:latest                                                                        46.3s
+ => [node3] exporting to image                                                                                                   88.3s
+ => => exporting layers                                                                                                          41.0s
+ => => exporting manifest sha256:9281252cb6c6ccde043cb458e9d94ab59158360c6a62dd3319e0e326c3379aa6                                 0.1s
+ => => exporting config sha256:b04e1a1141a0d6ad12382a92111f3e64bcc80aa619b5bbc942fb7b453c244082                                   0.2s
+ => => exporting attestation manifest sha256:82b51b34bf66bb5c6a38f66b33eec44ea01f62a82115f332b6f21336a7014464                     0.3s
+ => => exporting manifest list sha256:73ca35426dc072a19a44c5ae4de82adacfed5ec7924b21ed3d2949ff1c8ad097                            0.1s
+ => => naming to docker.io/library/docker-node3:latest                                                                            0.1s
+ => => unpacking to docker.io/library/docker-node3:latest                                                                        46.3s
+ => [node2] resolving provenance for metadata file                                                                                0.5s
+ => [node3] resolving provenance for metadata file                                                                                0.4s
  => [node0] resolving provenance for metadata file                                                                                0.1s
- => [node1] resolving provenance for metadata file                                                                                0.1s
+ => [node1] resolving provenance for metadata file                                                                                0.0s
 [+] up 8/8
- ✔ Image docker-node0  Built                                                                                                       9.1s
- ✔ Image docker-node1  Built                                                                                                       9.1s
- ✔ Image docker-node2  Built                                                                                                       9.1s
- ✔ Image docker-node3  Built                                                                                                       9.1s
- ✔ Container mpi_node1 Recreated                                                                                                   2.4s
- ✔ Container mpi_node2 Recreated                                                                                                   1.8s
- ✔ Container mpi_node3 Recreated                                                                                                   2.5s
- ✔ Container mpi_node0 Recreated                                                                                                   1.9s
+ ✔ Image docker-node0  Built                                                                                                     383.8s
+ ✔ Image docker-node1  Built                                                                                                     383.8s
+ ✔ Image docker-node2  Built                                                                                                     383.8s
+ ✔ Image docker-node3  Built                                                                                                     383.8s
+ ✔ Container mpi_node2 Recreated                                                                                                   7.4s
+ ✔ Container mpi_node1 Recreated                                                                                                   7.4s
+ ✔ Container mpi_node3 Recreated                                                                                                   7.4s
+ ✔ Container mpi_node0 Recreated
 Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
 mpi_node0  | === Running MPI across 4 static nodes ===
-mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
-mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
-mpi_node0  | [MPI] Matrix size: 512×512
+mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
+mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
+mpi_node0  | [MPI] Matrix size: 256×256
 mpi_node0  | [MPI] Number of processes: 4
 mpi_node0  | ╔══════════════════════════════════════════╗
 mpi_node0  | ║  MPI Distributed (4 processes)           ║
 mpi_node0  | ╠══════════════════════════════════════════╣
-mpi_node0  | ║  Matrix Size   :  512 ×  512             ║
-mpi_node0  | ║  Total Time    :    327.511 ms            ║
-mpi_node0  | ║  Compute Time  :    280.444 ms            ║
-mpi_node0  | ║  Comm Time     :     46.952 ms            ║
-mpi_node0  | ║  GFLOPS        :     0.8196               ║
-mpi_node0  | ║  Speedup vs CPU:       2.01x              ║
-mpi_node0  | ║  Efficiency    :      50.24%              ║
+mpi_node0  | ║  Matrix Size   :  256 ×  256             ║
+mpi_node0  | ║  Total Time    :      4.092 ms            ║
+mpi_node0  | ║  Compute Time  :      1.112 ms            ║
+mpi_node0  | ║  Comm Time     :      2.879 ms            ║
+mpi_node0  | ║  GFLOPS        :     8.2001               ║
+mpi_node0  | ║  Speedup vs CPU:       6.72x              ║
+mpi_node0  | ║  Efficiency    :     167.88%              ║
 mpi_node0  | ║  Verified      : PASS ✓                     ║
 mpi_node0  | ╚══════════════════════════════════════════╝
-mpi_node0  | CSV,mpi-4,512,327.511,0.8196,PASS
+mpi_node0  | CSV,mpi-4,256,4.092,8.2001,PASS
 mpi_node0  | === MPI run complete ===
 mpi_node0 exited with code 0
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$ docker-compose up
-WARN[0000] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
-[+] up 3/3
- ✔ Container mpi_node1 Running                                                                                                     0.0s
- ✔ Container mpi_node2 Running                                                                                                     0.0s
- ✔ Container mpi_node3 Running                                                                                                     0.0s
 Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
 mpi_node0  | === Running MPI across 4 static nodes ===
-mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
-mpi_node0  | [MPI] Matrix size: 512×512
-mpi_node0  | [MPI] Number of processes: 4
-mpi_node0  | ╔══════════════════════════════════════════╗
-mpi_node0  | ║  MPI Distributed (4 processes)           ║
-mpi_node0  | ╠══════════════════════════════════════════╣
-mpi_node0  | ║  Matrix Size   :  512 ×  512             ║
-mpi_node0  | ║  Total Time    :    356.381 ms            ║
-mpi_node0  | ║  Compute Time  :    243.253 ms            ║
-mpi_node0  | ║  Comm Time     :    113.005 ms            ║
-mpi_node0  | ║  GFLOPS        :     0.7532               ║
-mpi_node0  | ║  Speedup vs CPU:       1.54x              ║
-mpi_node0  | ║  Efficiency    :      38.55%              ║
-mpi_node0  | ║  Verified      : PASS ✓                     ║
-mpi_node0  | ╚══════════════════════════════════════════╝
-mpi_node0  | CSV,mpi-4,512,356.381,0.7532,PASS
-mpi_node0  | === MPI run complete ===
-mpi_node0 exited with code 0
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$ docker-compose up
-WARN[0000] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker/docker-compose.yml: the attribute `version` is obsolete, it will be ignored, please remove it to avoid potential confusion
-[+] up 3/3
- ✔ Container mpi_node2 Running                                                                                                     0.0s
- ✔ Container mpi_node3 Running                                                                                                     0.0s
- ✔ Container mpi_node1 Running                                                                                                     0.0s
-Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
-mpi_node0  | === Running MPI across 4 static nodes ===
-mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
-mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
 mpi_node0  | [MPI] Matrix size: 512×512
 mpi_node0  | [MPI] Number of processes: 4
@@ -312,37 +103,71 @@ mpi_node0  | ╔═════════════════════�
 mpi_node0  | ║  MPI Distributed (4 processes)           ║
 mpi_node0  | ╠══════════════════════════════════════════╣
 mpi_node0  | ║  Matrix Size   :  512 ×  512             ║
-mpi_node0  | ║  Total Time    :    261.681 ms            ║
-mpi_node0  | ║  Compute Time  :    235.934 ms            ║
-mpi_node0  | ║  Comm Time     :     25.665 ms            ║
-mpi_node0  | ║  GFLOPS        :     1.0258               ║
-mpi_node0  | ║  Speedup vs CPU:       2.17x              ║
-mpi_node0  | ║  Efficiency    :      54.27%              ║
+mpi_node0  | ║  Total Time    :     29.330 ms            ║
+mpi_node0  | ║  Compute Time  :     13.468 ms            ║
+mpi_node0  | ║  Comm Time     :     15.780 ms            ║
+mpi_node0  | ║  GFLOPS        :     9.1522               ║
+mpi_node0  | ║  Speedup vs CPU:      11.37x              ║
+mpi_node0  | ║  Efficiency    :     284.31%              ║
 mpi_node0  | ║  Verified      : PASS ✓                     ║
 mpi_node0  | ╚══════════════════════════════════════════╝
-mpi_node0  | CSV,mpi-4,512,261.681,1.0258,PASS
+mpi_node0  | CSV,mpi-4,512,29.330,9.1522,PASS
 mpi_node0  | === MPI run complete ===
-mpi_node0 exited with code 0
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$
+mpi_node0 exited with code 0                                                                                                   3.6s
 Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
 mpi_node0  | === Running MPI across 4 static nodes ===
+mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
 mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
-mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
 mpi_node0  | [MPI] Matrix size: 1024×1024
 mpi_node0  | [MPI] Number of processes: 4
 mpi_node0  | ╔══════════════════════════════════════════╗
 mpi_node0  | ║  MPI Distributed (4 processes)           ║
 mpi_node0  | ╠══════════════════════════════════════════╣
 mpi_node0  | ║  Matrix Size   : 1024 × 1024             ║
-mpi_node0  | ║  Total Time    :   6194.132 ms            ║
-mpi_node0  | ║  Compute Time  :   6107.225 ms            ║
-mpi_node0  | ║  Comm Time     :     86.825 ms            ║
-mpi_node0  | ║  GFLOPS        :     0.3467               ║
-mpi_node0  | ║  Speedup vs CPU:       1.84x              ║
-mpi_node0  | ║  Efficiency    :      46.01%              ║
+mpi_node0  | ║  Total Time    :    253.694 ms            ║
+mpi_node0  | ║  Compute Time  :    197.745 ms            ║
+mpi_node0  | ║  Comm Time     :     55.856 ms            ║
+mpi_node0  | ║  GFLOPS        :     8.4649               ║
+mpi_node0  | ║  Speedup vs CPU:      33.95x              ║
+mpi_node0  | ║  Efficiency    :     848.65%              ║
 mpi_node0  | ║  Verified      : PASS ✓                     ║
 mpi_node0  | ╚══════════════════════════════════════════╝
-mpi_node0  | CSV,mpi-4,1024,6194.132,0.3467,PASS
+mpi_node0  | CSV,mpi-4,1024,253.694,8.4649,PASS
 mpi_node0  | === MPI run complete ===
 mpi_node0 exited with code 0
+Attaching to mpi_node0, mpi_node1, mpi_node2, mpi_node3
+mpi_node0  | === Running MPI across 4 static nodes ===
+mpi_node0  | Warning: Permanently added 'node1' (ED25519) to the list of known hosts.
+mpi_node0  | Warning: Permanently added 'node3' (ED25519) to the list of known hosts.
+mpi_node0  | Warning: Permanently added 'node2' (ED25519) to the list of known hosts.
+mpi_node0  | [MPI] Matrix size: 2048×2048
+mpi_node0  | [MPI] Number of processes: 4
+mpi_node0  | ╔══════════════════════════════════════════╗
+mpi_node0  | ║  MPI Distributed (4 processes)           ║
+mpi_node0  | ╠══════════════════════════════════════════╣
+mpi_node0  | ║  Matrix Size   : 2048 × 2048             ║
+mpi_node0  | ║  Total Time    :   1824.103 ms            ║
+mpi_node0  | ║  Compute Time  :   1680.930 ms            ║
+mpi_node0  | ║  Comm Time     :    143.016 ms            ║
+mpi_node0  | ║  GFLOPS        :     9.4183               ║
+mpi_node0  | ║  Speedup vs CPU:      70.86x              ║
+mpi_node0  | ║  Efficiency    :    1771.51%              ║
+mpi_node0  | ║  Verified      : PASS ✓                     ║
+mpi_node0  | ╚══════════════════════════════════════════╝
+mpi_node0  | CSV,mpi-4,2048,1824.103,9.4183,PASS
+mpi_node0  | === MPI run complete ===
+mpi_node0 exited with code 0
+Gracefully Stopping... press Ctrl+C again to force
+Container mpi_node0 Stopping
+Container mpi_node0 Stopped
+Container mpi_node3 Stopping
+Container mpi_node1 Stopping
+Container mpi_node2 Stopping
+Container mpi_node3 Stopped
+mpi_node3 exited with code 0
+Container mpi_node2 Stopped
+mpi_node2 exited with code 0
+Container mpi_node1 Stopped
+mpi_node1 exited with code 0
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/docker$
