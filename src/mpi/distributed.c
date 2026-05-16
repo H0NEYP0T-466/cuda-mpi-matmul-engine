@@ -84,6 +84,7 @@ int main(int argc, char** argv) {
     float* C = NULL;  /* Full C on rank 0 only */
     float* local_A = matrix_alloc(my_rows, N);
     float* local_C = matrix_alloc(my_rows, N);
+    matrix_zero(local_C, my_rows, N);
 
     if (rank == 0) {
         A = matrix_alloc(N, N);
@@ -111,12 +112,11 @@ int main(int argc, char** argv) {
     /* Local computation: local_C = local_A × B */
     double t_comp_start = MPI_Wtime();
     for (int i = 0; i < my_rows; i++) {
-        for (int j = 0; j < N; j++) {
-            float sum = 0.0f;
-            for (int k = 0; k < N; k++) {
-                sum += local_A[i * N + k] * B[k * N + j];
+        for (int k = 0; k < N; k++) {
+            float a_val = local_A[i * N + k];
+            for (int j = 0; j < N; j++) {
+                local_C[i * N + j] += a_val * B[k * N + j];
             }
-            local_C[i * N + j] = sum;
         }
     }
     double t_comp_end = MPI_Wtime();

@@ -6,58 +6,58 @@ honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ bash scripts
 
 === CPU Sequential ===
 [RUN] cpu | Size: 256×256
-  → 43.732,0.7673,PASS
+  → 26.404,1.2708,PASS
 [RUN] cpu | Size: 512×512
-  → 315.637,0.8505,PASS
+  → 271.521,0.9886,PASS
 [RUN] cpu | Size: 1024×1024
-  → 7811.235,0.2749,PASS
+  → 5397.665,0.3979,PASS
 [RUN] cpu | Size: 2048×2048
-  → 126842.005,0.1354,PASS
+  → 88233.032,0.1947,PASS
 
 === OpenMP CPU Parallel ===
 [RUN] openmp-cpu | Size: 256×256
-  → 29.982,1.1191,PASS
+  → 1.379,24.3283,PASS
 [RUN] openmp-cpu | Size: 512×512
-  → 388.407,0.6911,PASS
+  → 8.565,31.3405,PASS
 [RUN] openmp-cpu | Size: 1024×1024
-  → 8157.823,0.2632,PASS
+  → 92.131,23.3090,PASS
 [RUN] openmp-cpu | Size: 2048×2048
-  → 84620.725,0.2030,PASS
+  → 1223.128,14.0458,FAIL
 
 === Edge Case Correctness (CPU) ===
 [RUN] cpu | Size: 1×1
-  → 0.000,0.0073,PASS
+  → 0.000,0.0041,PASS
 [RUN] cpu | Size: 15×15
-  → 0.028,0.2430,PASS
+  → 0.005,1.4748,PASS
 [RUN] cpu | Size: 17×17
-  → 0.006,1.6001,PASS
+  → 0.007,1.4841,PASS
 [RUN] cpu | Size: 31×31
-  → 0.045,1.3374,PASS
+  → 0.036,1.6360,PASS
 [RUN] cpu | Size: 33×33
-  → 0.051,1.4102,PASS
+  → 0.042,1.7245,PASS
 [RUN] cpu | Size: 255×255
-  → 37.390,0.8869,PASS
+  → 33.066,1.0029,PASS
 [RUN] cpu | Size: 257×257
-  → 54.178,0.6266,PASS
+  → 26.846,1.2646,PASS
 [SKIP] CUDA build not found. Run on Colab or: make cuda
 
 === MPI Distributed ===
 [RUN] MPI (np=1) | Size: 256×256
-  → 34.412,0.9751,PASS
+  → 3.855,8.7035,PASS
 [RUN] MPI (np=1) | Size: 512×512
-  → 357.026,0.7519,PASS
+  → 22.725,11.8121,PASS
 [RUN] MPI (np=1) | Size: 1024×1024
-  → 7492.908,0.2866,PASS
+  → 292.496,7.3419,PASS
 [RUN] MPI (np=1) | Size: 2048×2048
-  → 113245.736,0.1517,PASS
+  → 2841.172,6.0468,FAIL
 [RUN] MPI (np=2) | Size: 256×256
-  → 21.411,1.5672,PASS
+  → 1.689,19.8636,PASS
 [RUN] MPI (np=2) | Size: 512×512
-  → 210.259,1.2767,PASS
+  → 16.632,16.1400,PASS
 [RUN] MPI (np=2) | Size: 1024×1024
-  → 5653.263,0.3799,PASS
+  → 184.980,11.6093,PASS
 [RUN] MPI (np=2) | Size: 2048×2048
-  → 69900.285,0.2458,PASS
+  → 1895.850,9.0618,FAIL
 [RUN] MPI (np=4) | Size: 256×256
 [RUN] MPI (np=4) | Size: 512×512
 [RUN] MPI (np=4) | Size: 1024×1024
@@ -82,4 +82,3 @@ honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ python3 scri
 [CHART] 6_cost_efficiency.png
 
 [DONE] 6 charts saved to /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/scripts/../results/charts/
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$

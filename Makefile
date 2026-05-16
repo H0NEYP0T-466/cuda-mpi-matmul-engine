@@ -17,6 +17,7 @@ MPICC    = mpicc
 
 # Flags
 CFLAGS   = -O2 -Wall -Wextra -std=c99
+OPTFLAGS = -O3 -march=native
 NVFLAGS  = -O2 -std=c++14
 OMPFLAGS = -fopenmp
 LDFLAGS  = -lm
@@ -63,7 +64,7 @@ help:
 # CPU-only build (sequential + OpenMP CPU threads)
 # ==============================================================================
 cpu: $(BUILD)
-	$(CC) $(CFLAGS) $(OMPFLAGS) \
+	$(CC) $(OPTFLAGS) $(OMPFLAGS) \
 		-DENABLE_OPENMP_CPU \
 		$(SRC)/main.c $(CORE_SRC) $(CPU_SRC) $(OMP)/offload_cpu.c \
 		-o $(BIN_CPU) $(LDFLAGS)
@@ -85,7 +86,7 @@ cuda: $(BUILD)
 # OpenMP GPU offload build
 # ==============================================================================
 openmp-gpu: $(BUILD)
-	$(CC) $(CFLAGS) $(OMPFLAGS) -foffload=nvptx-none \
+	$(CC) $(OPTFLAGS) $(OMPFLAGS) -foffload=nvptx-none \
 		-DENABLE_OPENMP_GPU \
 		$(SRC)/main.c $(CORE_SRC) $(CPU_SRC) $(OMP)/offload_gpu.c \
 		-o $(BIN_OMP_GPU) $(LDFLAGS)
@@ -95,7 +96,7 @@ openmp-gpu: $(BUILD)
 # MPI build (separate entry point)
 # ==============================================================================
 mpi: $(BUILD)
-	$(MPICC) $(CFLAGS) \
+	$(MPICC) $(OPTFLAGS) \
 		$(MPI_DIR)/distributed.c $(CORE_SRC) $(CPU_SRC) \
 		-o $(BIN_MPI) $(LDFLAGS)
 	@echo "[BUILD] $(BIN_MPI) — MPI distributed"

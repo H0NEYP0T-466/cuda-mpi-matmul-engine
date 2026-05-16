@@ -23,21 +23,25 @@ double openmp_cpu_matmul(const float* A, const float* B, float* C,
     int num_threads = omp_get_max_threads();
     printf("[OpenMP CPU] Using %d threads (CPU only, no GPU offload)\n", num_threads);
 
+    /* Zero C since the i-k-j loop uses += accumulation */
+    matrix_zero(C, M, N);
+
     double start = timer_get_ms();
 
     /*
-     * Parallelize the outer two loops across CPU threads.
-     * collapse(2) merges i and j loops for better load balancing.
-     * schedule(static) divides iterations evenly among threads.
+     * Parallelize the i-loop across CPU threads.
+     * Each thread gets a contiguous block of rows (schedule(static)).
+     * Loop order i-k-j for better cache locality on B (sequential access).
+     * No collapse — outer i-loop alone gives enough parallelism
+     * and avoids false sharing on adjacent C writes.
      */
-    #pragma omp parallel for collapse(2) schedule(static)
+    #pragma omp parallel for schedule(static)
     for (int i = 0; i < M; i++) {
-        for (int j = 0; j < N; j++) {
-            float sum = 0.0f;
-            for (int k = 0; k < K; k++) {
-                sum += A[i * K + k] * B[k * N + j];
+        for (int k = 0; k < K; k++) {
+            float a_ik = A[i * K + k];
+            for (int j = 0; j < N; j++) {
+                C[i * N + j] += a_ik * B[k * N + j];
             }
-            C[i * N + j] = sum;
         }
     }
 

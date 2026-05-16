@@ -1,0 +1,85 @@
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ bash scripts/benchmark.sh
+╔══════════════════════════════════════════╗
+║   Matrix Multiplication Benchmark Suite   ║
+╚══════════════════════════════════════════╝
+
+
+=== CPU Sequential ===
+[RUN] cpu | Size: 256×256
+  → 43.732,0.7673,PASS
+[RUN] cpu | Size: 512×512
+  → 315.637,0.8505,PASS
+[RUN] cpu | Size: 1024×1024
+  → 7811.235,0.2749,PASS
+[RUN] cpu | Size: 2048×2048
+  → 126842.005,0.1354,PASS
+
+=== OpenMP CPU Parallel ===
+[RUN] openmp-cpu | Size: 256×256
+  → 29.982,1.1191,PASS
+[RUN] openmp-cpu | Size: 512×512
+  → 388.407,0.6911,PASS
+[RUN] openmp-cpu | Size: 1024×1024
+  → 8157.823,0.2632,PASS
+[RUN] openmp-cpu | Size: 2048×2048
+  → 84620.725,0.2030,PASS
+
+=== Edge Case Correctness (CPU) ===
+[RUN] cpu | Size: 1×1
+  → 0.000,0.0073,PASS
+[RUN] cpu | Size: 15×15
+  → 0.028,0.2430,PASS
+[RUN] cpu | Size: 17×17
+  → 0.006,1.6001,PASS
+[RUN] cpu | Size: 31×31
+  → 0.045,1.3374,PASS
+[RUN] cpu | Size: 33×33
+  → 0.051,1.4102,PASS
+[RUN] cpu | Size: 255×255
+  → 37.390,0.8869,PASS
+[RUN] cpu | Size: 257×257
+  → 54.178,0.6266,PASS
+[SKIP] CUDA build not found. Run on Colab or: make cuda
+
+=== MPI Distributed ===
+[RUN] MPI (np=1) | Size: 256×256
+  → 34.412,0.9751,PASS
+[RUN] MPI (np=1) | Size: 512×512
+  → 357.026,0.7519,PASS
+[RUN] MPI (np=1) | Size: 1024×1024
+  → 7492.908,0.2866,PASS
+[RUN] MPI (np=1) | Size: 2048×2048
+  → 113245.736,0.1517,PASS
+[RUN] MPI (np=2) | Size: 256×256
+  → 21.411,1.5672,PASS
+[RUN] MPI (np=2) | Size: 512×512
+  → 210.259,1.2767,PASS
+[RUN] MPI (np=2) | Size: 1024×1024
+  → 5653.263,0.3799,PASS
+[RUN] MPI (np=2) | Size: 2048×2048
+  → 69900.285,0.2458,PASS
+[RUN] MPI (np=4) | Size: 256×256
+[RUN] MPI (np=4) | Size: 512×512
+[RUN] MPI (np=4) | Size: 1024×1024
+[RUN] MPI (np=4) | Size: 2048×2048
+
+════════════════════════════════════════════
+  Results saved to: results/timings.csv
+  Run: python3 scripts/benchmark.py to generate charts
+════════════════════════════════════════════
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ python3 scripts/benchmark.py
+╔══════════════════════════════════════════╗
+║   Generating Performance Charts           ║
+╚══════════════════════════════════════════╝
+[INPUT] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/scripts/../results/timings.csv
+[OUTPUT] /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/scripts/../results/charts/
+
+[CHART] 1_exec_time.png
+[CHART] 2_speedup.png
+[CHART] 3_gflops.png
+[CHART] 4_mpi_strong_scaling.png
+[CHART] 5_mpi_weak_scaling.png
+[CHART] 6_cost_efficiency.png
+
+[DONE] 6 charts saved to /mnt/host/x/file/Projects/CUDA-MPI MatMul Engine/scripts/../results/charts/
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$

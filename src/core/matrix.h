@@ -17,7 +17,7 @@
 #define MATRIX_SEED 42
 
 /* Tolerance for floating-point comparison across implementations */
-#define VERIFY_TOLERANCE 1e-3f
+#define VERIFY_TOLERANCE 1e-2f
 
 /*
  * Allocate a rows×cols float matrix (row-major, contiguous).

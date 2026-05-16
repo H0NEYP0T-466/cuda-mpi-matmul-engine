@@ -1,30 +1,3 @@
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ make mpi
-mpicc -O2 -Wall -Wextra -std=c99 \
-        src/mpi/distributed.c src/core/matrix.c src/core/timer.c src/cpu/sequential.c \
-        -o build/matmul_mpi -lm
-src/core/timer.c: In function ‘timer_get_ms’:
-src/core/timer.c:19:23: error: storage size of ‘ts’ isn’t known
-   19 |       struct timespec ts;
-      |                       ^~
-src/core/timer.c:20:7: warning: implicit declaration of function ‘clock_gettime’ [-Wimplicit-function-declaration]
-   20 |       clock_gettime(CLOCK_MONOTONIC, &ts);
-      |       ^~~~~~~~~~~~~
-src/core/timer.c:20:21: error: ‘CLOCK_MONOTONIC’ undeclared (first use in this function)
-   20 |       clock_gettime(CLOCK_MONOTONIC, &ts);
-      |                     ^~~~~~~~~~~~~~~
-src/core/timer.c:20:21: note: each undeclared identifier is reported only once for each function it appears in
-src/core/timer.c:19:23: warning: unused variable ‘ts’ [-Wunused-variable]
-   19 |       struct timespec ts;
-      |                       ^~
-src/core/timer.c:22:3: warning: control reaches end of non-void function [-Wreturn-type]
-   22 |   }
-      |   ^
-make: *** [Makefile:98: mpi] Error 1
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ make mpi
-mpicc -O2 -Wall -Wextra -std=c99 \
-        src/mpi/distributed.c src/core/matrix.c src/core/timer.c src/cpu/sequential.c \
-        -o build/matmul_mpi -lm
-[BUILD] build/matmul_mpi — MPI distributed
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 1 ./build/matmul_mpi 512
 [MPI] Matrix size: 512×512
 [MPI] Number of processes: 1
@@ -32,15 +5,81 @@ honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 1
 ║  MPI Distributed (1 processes)           ║
 ╠══════════════════════════════════════════╣
 ║  Matrix Size   :  512 ×  512             ║
-║  Total Time    :    253.552 ms            ║
-║  Compute Time  :    251.573 ms            ║
-║  Comm Time     :      1.977 ms            ║
-║  GFLOPS        :     1.0587               ║
-║  Speedup vs CPU:       0.98x              ║
-║  Efficiency    :      98.44%              ║
+║  Total Time    :     26.550 ms            ║
+║  Compute Time  :     24.931 ms            ║
+║  Comm Time     :      1.618 ms            ║
+║  GFLOPS        :    10.1105               ║
+║  Speedup vs CPU:      10.02x              ║
+║  Efficiency    :    1001.94%              ║
 ║  Verified      : PASS ✓                     ║
 ╚══════════════════════════════════════════╝
-CSV,mpi-1,512,253.552,1.0587,PASS
+CSV,mpi-1,512,26.550,10.1105,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 1 ./build/matmul_mpi 256
+[MPI] Matrix size: 256×256
+[MPI] Number of processes: 1
+╔══════════════════════════════════════════╗
+║  MPI Distributed (1 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   :  256 ×  256             ║
+║  Total Time    :      3.469 ms            ║
+║  Compute Time  :      2.999 ms            ║
+║  Comm Time     :      0.470 ms            ║
+║  GFLOPS        :     9.6717               ║
+║  Speedup vs CPU:       6.92x              ║
+║  Efficiency    :     692.24%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-1,256,3.469,9.6717,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 1 ./build/matmul_mpi 1024
+[MPI] Matrix size: 1024×1024
+[MPI] Number of processes: 1
+╔══════════════════════════════════════════╗
+║  MPI Distributed (1 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 1024 × 1024             ║
+║  Total Time    :    265.826 ms            ║
+║  Compute Time  :    255.267 ms            ║
+║  Comm Time     :     10.556 ms            ║
+║  GFLOPS        :     8.0785               ║
+║  Speedup vs CPU:      18.47x              ║
+║  Efficiency    :    1846.85%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-1,1024,265.826,8.0785,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 1 ./build/matmul_mpi 2048
+[MPI] Matrix size: 2048×2048
+[MPI] Number of processes: 1
+[VERIFY FAIL] First mismatch at (0,648): expected=49749.035156, actual=49749.046875, diff=0.011719
+╔══════════════════════════════════════════╗
+║  MPI Distributed (1 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 2048 × 2048             ║
+║  Total Time    :   2656.640 ms            ║
+║  Compute Time  :   2612.386 ms            ║
+[VERIFY FAIL] Total mismatches: 6030 / 4194304 elements
+║  Comm Time     :     44.250 ms            ║
+║  GFLOPS        :     6.4668               ║
+║  Speedup vs CPU:      33.58x              ║
+║  Efficiency    :    3357.50%              ║
+║  Verified      : FAIL ✗                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-1,2048,2656.640,6.4668,FAIL
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 2 ./build/matmul_mpi 256
+[MPI] Matrix size: 256×256
+[MPI] Number of processes: 2
+╔══════════════════════════════════════════╗
+║  MPI Distributed (2 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   :  256 ×  256             ║
+║  Total Time    :      2.174 ms            ║
+║  Compute Time  :      1.506 ms            ║
+║  Comm Time     :      0.664 ms            ║
+║  GFLOPS        :    15.4345               ║
+║  Speedup vs CPU:      12.72x              ║
+║  Efficiency    :     636.00%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-2,256,2.174,15.4345,PASS
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 2 ./build/matmul_mpi 512
 [MPI] Matrix size: 512×512
 [MPI] Number of processes: 2
@@ -48,61 +87,113 @@ honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 2
 ║  MPI Distributed (2 processes)           ║
 ╠══════════════════════════════════════════╣
 ║  Matrix Size   :  512 ×  512             ║
-║  Total Time    :    154.403 ms            ║
-║  Compute Time  :    150.781 ms            ║
-║  Comm Time     :      3.617 ms            ║
-║  GFLOPS        :     1.7385               ║
-║  Speedup vs CPU:       1.84x              ║
-║  Efficiency    :      91.78%              ║
+║  Total Time    :     15.199 ms            ║
+║  Compute Time  :     12.661 ms            ║
+║  Comm Time     :      2.532 ms            ║
+║  GFLOPS        :    17.6615               ║
+║  Speedup vs CPU:      19.90x              ║
+║  Efficiency    :     994.91%              ║
 ║  Verified      : PASS ✓                     ║
 ╚══════════════════════════════════════════╝
-CSV,mpi-2,512,154.403,1.7385,PASS
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun --allow-run-as-root -np 4 ./build/matmul_mpi 512
---------------------------------------------------------------------------
-There are not enough slots available in the system to satisfy the 4
-slots that were requested by the application:
-
-  ./build/matmul_mpi
-
-Either request fewer slots for your application, or make more slots
-available for use.
-
-A "slot" is the Open MPI term for an allocatable unit where we can
-launch a process.  The number of slots available are defined by the
-environment in which Open MPI processes are run:
-
-  1. Hostfile, via "slots=N" clauses (N defaults to number of
-     processor cores if not provided)
-  2. The --host command line parameter, via a ":N" suffix on the
-     hostname (N defaults to 1 if not provided)
-  3. Resource manager (e.g., SLURM, PBS/Torque, LSF, etc.)
-  4. If none of a hostfile, the --host command line parameter, or an
-     RM is present, Open MPI defaults to the number of processor cores
-
-In all the above cases, if you want Open MPI to default to the number
-of hardware threads instead of the number of processor cores, use the
---use-hwthread-cpus option.
-
-Alternatively, you can use the --oversubscribe option to ignore the
-number of available slots when deciding the number of processes to
-launch.
---------------------------------------------------------------------------
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ nproc
-4
-honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun --allow-run-as-root --oversubscribe -np 4 ./build/matmul_mpi 512
+CSV,mpi-2,512,15.199,17.6615,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 2 ./build/matmul_mpi 1024
+[MPI] Matrix size: 1024×1024
+[MPI] Number of processes: 2
+╔══════════════════════════════════════════╗
+║  MPI Distributed (2 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 1024 × 1024             ║
+║  Total Time    :    202.103 ms            ║
+║  Compute Time  :    190.915 ms            ║
+║  Comm Time     :     11.159 ms            ║
+║  GFLOPS        :    10.6257               ║
+║  Speedup vs CPU:      27.97x              ║
+║  Efficiency    :    1398.41%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-2,1024,202.103,10.6257,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 2 ./build/matmul_mpi 2048
+[MPI] Matrix size: 2048×2048
+[MPI] Number of processes: 2
+[VERIFY FAIL] First mismatch at (0,648): expected=49749.035156, actual=49749.046875, diff=0.011719
+╔══════════════════════════════════════════╗
+║  MPI Distributed (2 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 2048 × 2048             ║
+║  Total Time    :   1862.191 ms            ║
+║  Compute Time  :   1802.630 ms            ║
+║  Comm Time     :     59.551 ms            ║
+║  GFLOPS        :     9.2256               ║
+║  Speedup vs CPU:      50.39x              ║
+║  Efficiency    :    2519.52%              ║
+║  Verified      : FAIL ✗                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-2,2048,1862.191,9.2256,FAIL
+[VERIFY FAIL] Total mismatches: 6030 / 4194304 elements
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 4 --oversubscribe ./build/matmul_mpi 256
+[MPI] Matrix size: 256×256
+[MPI] Number of processes: 4
+╔══════════════════════════════════════════╗
+║  MPI Distributed (4 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   :  256 ×  256             ║
+║  Total Time    :      1.732 ms            ║
+║  Compute Time  :      0.933 ms            ║
+║  Comm Time     :      0.786 ms            ║
+║  GFLOPS        :    19.3703               ║
+║  Speedup vs CPU:      17.96x              ║
+║  Efficiency    :     449.10%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-4,256,1.732,19.3703,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 4 --oversubscribe ./build/matmul_mpi 512
 [MPI] Matrix size: 512×512
 [MPI] Number of processes: 4
 ╔══════════════════════════════════════════╗
 ║  MPI Distributed (4 processes)           ║
 ╠══════════════════════════════════════════╣
 ║  Matrix Size   :  512 ×  512             ║
-║  Total Time    :    139.103 ms            ║
-║  Compute Time  :    131.041 ms            ║
-║  Comm Time     :      8.030 ms            ║
-║  GFLOPS        :     1.9298               ║
-║  Speedup vs CPU:       2.04x              ║
-║  Efficiency    :      50.89%              ║
+║  Total Time    :     51.124 ms            ║
+║  Compute Time  :      8.258 ms            ║
+║  Comm Time     :     32.017 ms            ║
+║  GFLOPS        :     5.2506               ║
+║  Speedup vs CPU:       8.46x              ║
+║  Efficiency    :     211.51%              ║
 ║  Verified      : PASS ✓                     ║
 ╚══════════════════════════════════════════╝
-CSV,mpi-4,512,139.103,1.9298,PASS
+CSV,mpi-4,512,51.124,5.2506,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 4 --oversubscribe ./build/matmul_mpi 1024
+[MPI] Matrix size: 1024×1024
+[MPI] Number of processes: 4
+╔══════════════════════════════════════════╗
+║  MPI Distributed (4 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 1024 × 1024             ║
+║  Total Time    :    202.176 ms            ║
+║  Compute Time  :    185.661 ms            ║
+║  Comm Time     :     16.500 ms            ║
+║  GFLOPS        :    10.6219               ║
+║  Speedup vs CPU:      29.80x              ║
+║  Efficiency    :     745.07%              ║
+║  Verified      : PASS ✓                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-4,1024,202.176,10.6219,PASS
+honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$ mpirun -np 4 --oversubscribe ./build/matmul_mpi 2048
+[MPI] Matrix size: 2048×2048
+[MPI] Number of processes: 4
+[VERIFY FAIL] First mismatch at (0,648): expected=49749.035156, actual=49749.046875, diff=0.011719
+[VERIFY FAIL] Total mismatches: 6030 / 4194304 elements
+╔══════════════════════════════════════════╗
+║  MPI Distributed (4 processes)           ║
+╠══════════════════════════════════════════╣
+║  Matrix Size   : 2048 × 2048             ║
+║  Total Time    :   1681.985 ms            ║
+║  Compute Time  :   1556.459 ms            ║
+║  Comm Time     :    125.510 ms            ║
+║  GFLOPS        :    10.2140               ║
+║  Speedup vs CPU:      61.49x              ║
+║  Efficiency    :    1537.34%              ║
+║  Verified      : FAIL ✗                     ║
+╚══════════════════════════════════════════╝
+CSV,mpi-4,2048,1681.985,10.2140,FAIL
 honeypot@honeypot:/mnt/host/x/file/Projects/CUDA-MPI MatMul Engine$
