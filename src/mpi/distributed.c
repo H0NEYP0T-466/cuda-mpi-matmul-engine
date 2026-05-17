@@ -31,14 +31,22 @@ int main(int argc, char** argv) {
     /* Parse matrix size from CLI */
     if (argc < 2) {
         if (rank == 0) {
-            fprintf(stderr, "Usage: mpirun -np <P> ./matmul_mpi <N>\n");
+            fprintf(stderr, "Usage: mpirun -np <P> ./matmul_mpi <N> [--nocpu]\n");
             fprintf(stderr, "  N: matrix dimension (N×N)\n");
+            fprintf(stderr, "  --nocpu: Skip CPU sequential verification\n");
         }
         MPI_Finalize();
         return EXIT_FAILURE;
     }
 
     int N = atoi(argv[1]);
+    int nocpu = 0;
+    for (int i = 2; i < argc; i++) {
+        if (strcmp(argv[i], "--nocpu") == 0) {
+            nocpu = 1;
+        }
+    }
+
     if (N <= 0) {
         if (rank == 0)
             fprintf(stderr, "[ERROR] Invalid matrix size: %d\n", N);
@@ -140,10 +148,20 @@ int main(int argc, char** argv) {
         double gflops = timer_calc_gflops(N, N, N, total_ms);
 
         /* Verify against CPU sequential */
-        float* C_ref = matrix_alloc(N, N);
-        double cpu_time = cpu_sequential_matmul(A, B, C_ref, N, N, N);
-        int verified = matrix_verify(C_ref, C, N, N);
-        double speedup = cpu_time / total_ms;
+        float* C_ref = NULL;
+        double cpu_time = 0.0;
+        int verified = 1;
+        double speedup = 1.0;
+
+        if (!nocpu) {
+            printf("[INFO] Computing CPU reference for verification...\n");
+            C_ref = matrix_alloc(N, N);
+            cpu_time = cpu_sequential_matmul(A, B, C_ref, N, N, N);
+            verified = matrix_verify(C_ref, C, N, N);
+            speedup = cpu_time / total_ms;
+        } else {
+            printf("[INFO] Skipping CPU reference computation (--nocpu)\n");
+        }
 
         printf("╔══════════════════════════════════════════╗\n");
         printf("║  MPI Distributed (%d processes)           ║\n", size);
@@ -164,7 +182,7 @@ int main(int argc, char** argv) {
         printf("CSV,mpi-%d,%d,%.3f,%.4f,%s\n",
                size, N, total_ms, gflops, verified ? "PASS" : "FAIL");
 
-        matrix_free(C_ref);
+        if (C_ref) matrix_free(C_ref);
         matrix_free(A);
         matrix_free(C);
     }

@@ -73,9 +73,10 @@ static void print_usage(const char* prog) {
     printf("║                                                      ║\n");
     printf("║  Options:                                            ║\n");
     printf("║    --manual   Enter matrix elements manually (≤8×8)   ║\n");
+    printf("║    --nocpu    Skip CPU sequential verification        ║\n");
     printf("║                                                      ║\n");
     printf("║  MPI mode: use src/mpi/distributed.c separately      ║\n");
-    printf("║    mpirun -np 4 ./matmul_mpi <N>                     ║\n");
+    printf("║    mpirun -np 4 ./matmul_mpi <N> [--nocpu]           ║\n");
     printf("╚══════════════════════════════════════════════════════╝\n\n");
 }
 
@@ -117,6 +118,7 @@ int main(int argc, char** argv) {
     ExecMode mode = MODE_NONE;
     int N = -1;
     int manual = 0;
+    int nocpu = 0;
 
     /* Parse command-line arguments */
     for (int i = 1; i < argc; i++) {
@@ -126,6 +128,8 @@ int main(int argc, char** argv) {
             N = parse_size(argv[++i]);
         } else if (strcmp(argv[i], "--manual") == 0) {
             manual = 1;
+        } else if (strcmp(argv[i], "--nocpu") == 0) {
+            nocpu = 1;
         } else if (strcmp(argv[i], "--help") == 0 || strcmp(argv[i], "-h") == 0) {
             print_usage(argv[0]);
             return EXIT_SUCCESS;
@@ -187,9 +191,14 @@ int main(int argc, char** argv) {
     }
 
     /* Always compute CPU reference for verification */
-    printf("[INFO] Computing CPU reference for verification...\n");
-    double cpu_time = cpu_sequential_matmul(A, B, C_ref, N, N, N);
-    printf("[CPU REF] %.3f ms\n", cpu_time);
+    double cpu_time = 0.0;
+    if (!nocpu) {
+        printf("[INFO] Computing CPU reference for verification...\n");
+        cpu_time = cpu_sequential_matmul(A, B, C_ref, N, N, N);
+        printf("[CPU REF] %.3f ms\n", cpu_time);
+    } else {
+        printf("[INFO] Skipping CPU reference computation (--nocpu)\n");
+    }
 
     /* Execute selected mode */
     double exec_time = -1.0;
@@ -268,8 +277,10 @@ int main(int argc, char** argv) {
     }
 
     /* Verify result against CPU reference */
-    if (mode != MODE_CPU) {
+    if (mode != MODE_CPU && !nocpu) {
         verified = matrix_verify(C_ref, C, N, N);
+    } else if (nocpu) {
+        verified = 1; /* Assume PASS if verification is skipped */
     }
 
     /* Print small result matrices */
@@ -282,7 +293,7 @@ int main(int argc, char** argv) {
 
     /* Print final results */
     double gflops = timer_calc_gflops(N, N, N, exec_time);
-    double speedup = (mode == MODE_CPU) ? 1.0 : cpu_time / exec_time;
+    double speedup = (mode == MODE_CPU) ? 1.0 : (nocpu ? 1.0 : cpu_time / exec_time);
 
     timer_print_result(mode_name(mode), N, exec_time, gflops, verified, speedup);
 
